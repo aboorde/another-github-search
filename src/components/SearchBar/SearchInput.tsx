@@ -9,7 +9,7 @@ export const SearchInput = () => {
 	const { history, location, parsedQueryParams: parsed } = useAppLocation()
 	const [queryValue, setQueryValue] = useState(parsed.q || '')
 	const dispatch = useDispatch()
-	const { search: searchClass } = useSearchInputStyles()
+	const { search: searchClass, searchInput } = useSearchInputStyles()
 
 	// Reset Input when going Home
 	useEffect(() => {
@@ -44,6 +44,7 @@ export const SearchInput = () => {
 					name='searchQuery'
 					value={queryValue}
 					onChange={handleChange}
+					className={searchInput}
 				/>
 			</div>
 		</form>
