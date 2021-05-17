@@ -1,5 +1,5 @@
 import { Container } from '@material-ui/core'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, HashRouter as Router, Switch } from 'react-router-dom'
 import { SearchBar } from './components/SearchBar/SearchBar'
 import { Details } from './pages/Details/Details'
 import { Home } from './pages/Home/Home'

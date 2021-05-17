@@ -47,7 +47,6 @@ export const SearchInput = () => {
 					name='searchQuery'
 					value={queryValue}
 					onChange={handleChange}
-					style={{ paddingLeft: '20px' }}
 				/>
 			</div>
 		</form>
