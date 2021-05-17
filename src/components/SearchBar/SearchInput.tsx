@@ -1,17 +1,14 @@
 import { InputBase } from '@material-ui/core'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory, useLocation } from 'react-router'
 import { fetchResults } from '../../redux/search/actions'
 import { useSearchInputStyles } from './styles'
-import queryString from 'query-string'
+import { useAppLocation } from '../../utils/utils'
 
 export const SearchInput = () => {
-	const location = useLocation()
-	const parsed = queryString.parse(location.search)
+	const { history, location, parsedQueryParams: parsed } = useAppLocation()
 	const [queryValue, setQueryValue] = useState(parsed.q || '')
 	const dispatch = useDispatch()
-	const history = useHistory()
 	const { search: searchClass } = useSearchInputStyles()
 
 	// Reset Input when going Home

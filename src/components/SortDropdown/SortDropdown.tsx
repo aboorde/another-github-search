@@ -1,18 +1,17 @@
 import { MenuItem, Select, Typography } from '@material-ui/core'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router'
 import { fetchResults } from '../../redux/search/actions'
 import { getQuery } from '../../redux/search/selectors'
 import queryString from 'query-string'
+import { useAppLocation } from '../../utils/utils'
 
 export const SortDropdown = () => {
-	const history = useHistory()
+	const { history, parsedQueryParams: parsed } = useAppLocation()
 	const dispatch = useDispatch()
-	const location = useLocation()
-	const parsed = queryString.parse(location.search)
 	const query = useSelector(getQuery)
 	const [sortValue, setSortValue] = useState(query.sort || 'best-match')
+
 	const handleSortChange = (event: React.ChangeEvent<{ value: unknown }>) => {
 		setSortValue(event.target.value as string)
 		let newParams
@@ -30,12 +29,14 @@ export const SortDropdown = () => {
 			dispatch(fetchResults(newParams))
 		}
 	}
+
 	return (
 		<div
 			style={{
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'flex-end',
+				marginBottom: '20px',
 			}}
 		>
 			<Typography style={{ marginRight: '5px' }}>Sort: </Typography>

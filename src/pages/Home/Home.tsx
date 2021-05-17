@@ -8,7 +8,7 @@ export const Home = () => {
 				<Typography variant='h1'>
 					Search{' '}
 					<span style={{ color: '#6f42c1', fontWeight: 'bold' }}>
-						Github Repositories
+						Github Repos
 					</span>{' '}
 					quickly with the click of a button
 				</Typography>

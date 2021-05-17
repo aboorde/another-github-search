@@ -10,32 +10,14 @@ import {
 } from '@material-ui/core'
 import { useState } from 'react'
 import queryString from 'query-string'
-import { useHistory, useLocation } from 'react-router'
 import { fetchResults } from '../../redux/search/actions'
 import { useDispatch } from 'react-redux'
-
-const languages = [
-	'Go',
-	'Java',
-	'JavaScript',
-	'TypeScript',
-	'Python',
-	'Ruby',
-	'Rust',
-	'Scala',
-]
-
-const getInitialFilterValue = (params: any) => {
-	if (!params.language) return []
-	if (typeof params.language === 'string') return [params.language]
-	return params.language
-}
+import { useAppLocation } from '../../utils/utils'
+import { getInitialFilterValue, languages } from './utils'
 
 export const LanguageFilter = () => {
-	const location = useLocation()
-	const history = useHistory()
+	const { history, parsedQueryParams: parsed } = useAppLocation()
 	const dispatch = useDispatch()
-	const parsed = queryString.parse(location.search)
 	const [filterValues, setFilterValues] = useState<string[]>(
 		getInitialFilterValue(parsed)
 	)
@@ -60,7 +42,9 @@ export const LanguageFilter = () => {
 	}
 
 	return (
-		<div style={{ display: 'flex', alignItems: 'flex-end' }}>
+		<div
+			style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '20px' }}
+		>
 			<FormControl>
 				<InputLabel htmlFor='language-filter-select'>
 					Choose Language(s)

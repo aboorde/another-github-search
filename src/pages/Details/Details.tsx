@@ -1,13 +1,13 @@
-import { useLocation } from 'react-router'
 import queryString from 'query-string'
 import { useSelector } from 'react-redux'
 import { getResultById } from '../../redux/search/selectors'
 import { Grid, List, ListItem, ListItemText } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import { useAppLocation } from '../../utils/utils'
 
 export const Details = () => {
-	const location = useLocation()
-	const parsed = queryString.parse(location.search)
+	const { parsedQueryParams: parsed } = useAppLocation()
+
 	const result = useSelector(getResultById(parsed.id))
 	const getQueryString = () => {
 		let newObject = parsed
